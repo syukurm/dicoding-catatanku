@@ -1,0 +1,16 @@
+{
+    "extends": [
+        "stylelint-config-standard-scss",
+        "stylelint-config-sass-guidelines",
+        "stylelint-config-rational-order"
+    ],
+    "plugins": ["stylelint-use-logical-spec", "stylelint-prettier"],
+    "rules": {
+        "liberty/use-logical-spec": true,
+        "max-nesting-depth": null,
+        "prettier/prettier": true,
+        "scss/dollar-variable-colon-space-after": null,
+        "selector-class-pattern": null,
+        "value-keyword-case": null
+    }
+}
