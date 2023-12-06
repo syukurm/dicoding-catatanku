@@ -1,4 +1,8 @@
-export default function SearchBox({ value, onChange }) {
+import { useSearchParams } from 'react-router-dom';
+
+export default function SearchBox() {
+    const [searchParameters, setSearchParameters] = useSearchParams();
+
     return (
         <div className="search-box">
             <svg
@@ -20,8 +24,8 @@ export default function SearchBox({ value, onChange }) {
                 id="search"
                 type="text"
                 className="search-box__input"
-                value={value}
-                onChange={onChange}
+                value={searchParameters.get('keyword') ?? ''}
+                onChange={(event) => setSearchParameters({ keyword: event.currentTarget.value })}
             />
         </div>
     );

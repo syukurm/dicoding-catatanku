@@ -1,9 +1,10 @@
 @use 'sass:color';
 
-$font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas,
-    'Liberation Mono', 'Courier New', monospace;
+$font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New', monospace;
 $color-background: hsl(210deg 6% 12%);
+$color-background-2: hsl(0deg 0% 19%);
 $color-text: hsl(220deg 3% 79%);
+$color-text-2: hsl(220deg 9% 46%);
 $color-accent: hsl(159deg 64% 45%);
 $color-accent-2: hsl(0deg 0% 93%);
 
@@ -34,6 +35,10 @@ body {
     -moz-osx-font-smoothing: grayscale;
 }
 
+a {
+    text-decoration: none;
+}
+
 .container {
     margin-inline: auto;
     min-block-size: 100vb;
@@ -45,10 +50,13 @@ body {
 }
 
 .header {
-    margin-block-end: 7rem;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
+    padding-block: 1rem;
+
+    &__inner {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
 
     &__title {
         font-weight: 700;
@@ -58,6 +66,15 @@ body {
         @media (width >= 640px) {
             font-size: 1.5rem;
             line-height: 2rem;
+        }
+    }
+
+    &__title-link {
+        color: $color-text;
+        text-decoration: none;
+
+        &:hover {
+            text-decoration: underline;
         }
     }
 }
@@ -72,7 +89,7 @@ body {
         padding-inline: 0.6rem;
         padding-block: 0.25rem;
         color: $color-text;
-        background-color: #313131;
+        background-color: $color-background-2;
         border: 1px solid transparent;
         border-radius: 0.375rem;
     }
@@ -108,12 +125,26 @@ body {
         text-overflow: ellipsis;
     }
 
+    &__title-link {
+        color: $color-accent-2;
+
+        &:hover {
+            text-decoration: underline;
+        }
+    }
+
     &__date {
-        color: #6b7280;
+        color: $color-text-2;
     }
 
     &__body {
         margin-block-start: 1rem;
+        /* stylelint-disable-next-line value-no-vendor-prefix */
+        display: -webkit-box;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        -webkit-line-clamp: 4;
+        -webkit-box-orient: vertical;
     }
 
     &__actions {
@@ -130,9 +161,10 @@ body {
     font-weight: 600;
     background: transparent;
     border-color: transparent;
+    border-width: 0;
     border-radius: 0.125rem;
-    padding-inline: 0.75rem;
-    padding-block: 0.25rem;
+    padding-inline: 0.85rem;
+    padding-block: 0.35rem;
 
     &:is(:hover, :focus) {
         cursor: pointer;
@@ -170,10 +202,10 @@ body {
 
     &--secondary {
         color: $color-accent-2;
-        background-color: #313131;
+        background-color: $color-background-2;
 
         &:hover {
-            background-color: #2a2a2a;
+            background-color: color.adjust($color: $color-background-2, $blackness: 15%);
         }
     }
 
@@ -187,14 +219,25 @@ body {
     }
 }
 
-.tab-section {
-    display: flex;
-    margin-block-end: 1.5rem;
-    justify-content: space-between;
+.navbar {
+    margin-block-start: 7rem;
 
-    &__tabs {
+    &__list {
         display: flex;
-        column-gap: 0.5rem;
+        list-style-type: none;
+    }
+
+    &__item {
+        display: flex;
+
+        &:first-child {
+            margin-inline-end: 0.5rem;
+        }
+
+        &:last-child {
+            flex-grow: 1;
+            justify-content: flex-end;
+        }
     }
 }
 
@@ -203,41 +246,7 @@ body {
     block-size: 1.5rem;
 }
 
-.modal {
-    min-block-size: 100vb;
-    min-inline-size: 100vi;
-    background-color: rgb(0 0 0 / 70%);
-
-    &__container {
-        margin-inline: auto;
-        margin-block-start: 20vh;
-        padding: 1.5rem;
-        background-color: $color-background;
-        border-radius: 0.375rem;
-        max-inline-size: 35rem;
-    }
-
-    &__header {
-        display: flex;
-        justify-content: space-between;
-    }
-
-    &__title {
-        color: $color-accent-2;
-        font-weight: 700;
-        font-size: 1.25rem;
-        line-height: 1.75rem;
-
-        @media (width >= 640px) {
-            font-size: 1.5rem;
-            line-height: 2rem;
-        }
-    }
-}
-
 .form {
-    margin-block-start: 2rem;
-
     &__group {
         display: flex;
         flex-direction: column;
@@ -257,7 +266,7 @@ body {
         padding-inline: 0.6rem;
         padding-block: 0.25rem;
         color: $color-text;
-        background-color: #313131;
+        background-color: $color-background-2;
         border: 1px solid transparent;
         border-radius: 0.375rem;
     }
@@ -278,4 +287,79 @@ body {
     border: $color-text dashed 2px;
     border-radius: 0.375rem;
     min-block-size: 12rem;
+}
+
+.note {
+    flex-grow: 1;
+    border: $color-text solid 2px;
+    border-radius: 0.375rem;
+
+    &__header {
+        border-block-end: 1px solid $color-text;
+        padding-block: 1.25rem;
+        padding-inline: 1rem;
+        display: flex;
+        justify-content: space-between;
+    }
+
+    &__title {
+        overflow: hidden;
+        color: $color-accent-2;
+        font-weight: 600;
+        font-size: 1.5rem;
+        line-height: 2rem;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+    }
+
+    &__actions {
+        display: flex;
+        align-items: center;
+        column-gap: 0.75rem;
+    }
+
+    &__date {
+        color: $color-text-2;
+    }
+
+    &__content {
+        padding-block: 1rem;
+        padding-inline: 1rem;
+    }
+}
+
+.add-note {
+    flex-grow: 1;
+    padding-block: 1rem;
+    padding-inline: 2rem;
+    border: $color-text-2 solid 2px;
+    border-radius: 0.375rem;
+
+    &__title {
+        color: $color-accent-2;
+        font-weight: 600;
+        font-size: 1.5rem;
+        line-height: 2rem;
+        padding-block: 0.5rem;
+    }
+}
+
+.not-found {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    border-block-start: 2px solid $color-text;
+
+    &__code {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: $color-accent-2;
+        font-weight: 900;
+        font-size: 8rem;
+        min-block-size: 8rem;
+    }
 }
