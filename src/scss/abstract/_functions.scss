@@ -1,0 +1,64 @@
+@use "sass:math";
+@use "sass:meta";
+@use "sass:map";
+@use "breakpoints" as *;
+
+@function breakpoint($screen) {
+    @if map.has-key($breakpoints, $screen) {
+        @return map.get($breakpoints, $screen);
+    } @else {
+        @error "#{$screen} is not a valid breakpoint.";
+    }
+}
+
+@function rounder($number, $decimals: 0) {
+    $n: 1;
+
+    @if $decimals > 0 {
+        @for $i from 1 through $decimals {
+            $n: $n * 10;
+        }
+    }
+
+    @return math.div(math.round($number * $n), $n);
+}
+
+@function px-to-rem($value) {
+    @if math.unit($value) != "px" {
+        @error "#{$value} is not a valid pixel value.";
+    }
+
+    $rems: math.div($value, 16px) * 1rem;
+
+    @return $rems;
+}
+
+@function strip-unit($num) {
+    @return math.div($num, ($num * 0 + 1));
+}
+
+@function rem-to-px($value) {
+    @if math.unit($value) == "px" {
+        @return $value;
+    }
+
+    @if math.unit($value) != "rem" {
+        @error "#{$value} is not a valid rem value.";
+    }
+
+    $px: strip-unit($value) * 16px;
+
+    @return $px;
+}
+
+@function fluid($min-size, $max-size, $min-breakpoint: breakpoint("sm"), $max-breakpoint: breakpoint("lg"), $unit: vw) {
+    $min-size: rem-to-px($min-size);
+    $max-size: rem-to-px($max-size);
+    $slope: math.div($max-size - $min-size, $max-breakpoint - $min-breakpoint);
+    $slope-to-unit: rounder($slope * 100, 2);
+    $intercept-rem: rounder(px-to-rem($min-size - $slope * $min-breakpoint), 2);
+    $min-size-rem: rounder(px-to-rem($min-size), 2);
+    $max-size-rem: rounder(px-to-rem($max-size), 2);
+
+    @return clamp(#{$min-size-rem}, #{$slope-to-unit}#{$unit} + #{$intercept-rem}, #{$max-size-rem});
+}

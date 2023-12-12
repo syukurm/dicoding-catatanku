@@ -1,0 +1,29 @@
+@use "../abstract" as *;
+
+.header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-block: 3rem 4.5rem;
+
+    &__inner {
+        display: flex;
+        gap: 1rem;
+        align-items: center;
+    }
+
+    &__title {
+        font-weight: 700;
+        font-size: fluid(1.25rem, 1.5rem);
+        line-height: 2rem;
+    }
+
+    &__title-link {
+        color: $color-text;
+        text-decoration: none;
+
+        &:hover {
+            text-decoration: underline;
+        }
+    }
+}

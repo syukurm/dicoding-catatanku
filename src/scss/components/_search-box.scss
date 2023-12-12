@@ -1,0 +1,14 @@
+@use "sass:color";
+@use "../abstract" as *;
+
+.search-box {
+    display: flex;
+    align-items: center;
+    column-gap: 0.75rem;
+
+    &__input {
+        min-inline-size: 12rem;
+
+        @extend %input;
+    }
+}

@@ -1,25 +1,28 @@
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
-import { generateButtonVariantClass } from '../utils';
+
+import { generateButtonVariantClass } from '../common';
 
 /**
  * @param {object} props
  * @param {'primary' | 'secondary' | 'accent' | 'icon'} props.variant
  * @param {string} props.to
  * @param {string | undefined} props.title
- * @param {import('react').ReactNode} props.children
+ * @param {string | undefined} ariaLabel
+ * @param {React.ReactNode} props.children
  */
-export default function LinkButton({ variant = 'primary', to, title, children }) {
+export default function LinkButton({ variant = 'primary', to, title, children, ariaLabel }) {
     const buttonVariantClass = generateButtonVariantClass(variant);
 
     return (
-        <Link to={to} className={`button ${buttonVariantClass}`} title={title}>
+        <Link to={to} className={`button ${buttonVariantClass}`} title={title} aria-label={ariaLabel}>
             {children}
         </Link>
     );
 }
 
 LinkButton.propTypes = {
+    ariaLabel: PropTypes.string,
     children: PropTypes.node.isRequired,
     title: PropTypes.string,
     to: PropTypes.string.isRequired,
@@ -27,5 +30,6 @@ LinkButton.propTypes = {
 };
 
 LinkButton.defaultProps = {
+    ariaLabel: undefined,
     title: undefined,
 };

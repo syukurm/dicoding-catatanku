@@ -1,0 +1,7 @@
+@use "functions" as *;
+
+@mixin mq($screen) {
+    @media (width >= breakpoint($screen)) {
+        @content;
+    }
+}

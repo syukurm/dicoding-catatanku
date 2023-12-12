@@ -1,0 +1,28 @@
+$dark-theme: (
+    "background": hsl(210deg 6% 12%),
+    "background-2": hsl(0deg 0% 19%),
+    "link": hsl(330deg 49% 67%),
+    "text": hsl(220deg 3% 79%),
+    "text-muted": hsl(218deg 11% 65%),
+    "accent": hsl(159deg 64% 45%),
+    "accent-2": hsl(0deg 0% 93%),
+    "quote": hsl(102deg 100% 86%),
+);
+$light-theme: (
+    "background": hsl(0deg 0% 98%),
+    "background-2": hsl(0deg 0% 88%),
+    "link": hsl(172deg 18% 41%),
+    "text": hsl(203deg 11% 15%),
+    "text-muted": hsl(215deg 14% 34%),
+    "accent": hsl(351deg 66% 48%),
+    "accent-2": hsl(0deg 0% 7%),
+    "quote": hsl(351deg 66% 48%),
+);
+$color-background: var(--color-background);
+$color-background-2: var(--color-background-2);
+$color-link: var(--color-link);
+$color-text: var(--color-text);
+$color-text-muted: var(--color-text-muted);
+$color-accent: var(--color-accent);
+$color-accent-2: var(--color-accent-2);
+$color-quote: var(--color-quote);

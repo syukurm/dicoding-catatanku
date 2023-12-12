@@ -3,9 +3,9 @@
     "env": {
         "browser": true,
         "node": true,
-        "es2020": true
+        "es2024": true
     },
-    "plugins": ["react-prefer-function-component"],
+    "plugins": ["react-prefer-function-component", "react-refresh", "simple-import-sort"],
     "extends": [
         "eslint:all",
         "plugin:import/recommended",
@@ -19,32 +19,10 @@
         "plugin:prettier/recommended"
     ],
     "rules": {
-        "no-dupe-else-if": "error",
-        "no-promise-executor-return": "error",
-        "no-unreachable-loop": "error",
-        "no-useless-backreference": "error",
-        "require-atomic-updates": "error",
-        "default-case-last": "error",
-        "grouped-accessor-pairs": "error",
-        "no-constructor-return": "error",
-        "no-implicit-coercion": "error",
-        "prefer-regex-literals": "error",
-        "capitalized-comments": "error",
-        "no-restricted-syntax": [
-            "error",
-            {
-                "selector": "ForInStatement",
-                "message": "for..in loops iterate over the entire prototype chain, which is virtually never what you want. Use Object.{keys,values,entries}, and iterate over the resulting array."
-            },
-            {
-                "selector": "LabeledStatement",
-                "message": "Labels are a form of GOTO; using them makes code confusing and hard to maintain and understand."
-            },
-            {
-                "selector": "WithStatement",
-                "message": "`with` is disallowed in strict mode because it makes code impossible to predict and optimize."
-            }
-        ],
+        "class-methods-use-this": "off",
+        "no-inner-declarations": "off",
+        "no-alert": "off",
+        "dot-notation": "off",
         "import/no-deprecated": "error",
         "import/order": "off",
         "import/no-extraneous-dependencies": [
@@ -54,13 +32,12 @@
             }
         ],
         "import/prefer-default-export": "off",
-        "react/button-has-type": "off",
-        "react/boolean-prop-naming": [
-            "error",
-            {
-                "validateNested": true
-            }
-        ],
+        "simple-import-sort/imports": "error",
+        "simple-import-sort/exports": "error",
+        "react-refresh/only-export-components": "warn",
+        "jsx-a11y/no-aria-hidden-on-focusable": "error",
+        "jsx-a11y/prefer-tag-over-role": "error",
+        "react/boolean-prop-naming": "off",
         "react/function-component-definition": [
             "error",
             {
@@ -83,6 +60,8 @@
         "react/jsx-no-constructed-context-values": "error",
         "react/jsx-no-script-url": "error",
         "react/jsx-no-useless-fragment": "error",
+        "react/button-has-type": "off",
+        "unicorn/no-null": "off",
         "unicorn/filename-case": [
             "error",
             {
@@ -91,8 +70,7 @@
                     "pascalCase": true
                 }
             }
-        ],
-        "unicorn/no-nested-ternary": ["error"]
+        ]
     },
     "settings": {
         "react": {

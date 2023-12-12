@@ -1,0 +1,14 @@
+@use "../abstract" as *;
+
+.nav-search {
+    display: flex;
+    flex-direction: column-reverse;
+    align-items: center;
+    row-gap: 1rem;
+    margin-block-end: 1rem;
+
+    @include mq("sm") {
+        flex-direction: row;
+        justify-content: space-between;
+    }
+}

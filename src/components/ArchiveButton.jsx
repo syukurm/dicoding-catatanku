@@ -1,18 +1,23 @@
 import PropTypes from 'prop-types';
+import { useContext } from 'react';
+
+import { LocaleContext } from '../contexts/LocaleContext';
 import Button from './Button';
 
 /**
  * @param {object} props
  * @param {boolean} props.isArchived
- * @param {() => void | undefined} props.onClick
+ * @param {(() => void | undefined) | undefined} props.onClick
  */
 export default function ArchiveButton({ isArchived = false, onClick }) {
+    const { trans } = useContext(LocaleContext);
+
     return (
         <Button
             type="button"
             variant="icon"
-            ariaLabel={isArchived ? 'Pindahkan' : 'Arsipkan'}
-            title={isArchived ? 'Pindahkan' : 'Arsipkan'}
+            ariaLabel={isArchived ? trans('moveToActive') : trans('moveToArchived')}
+            title={isArchived ? trans('moveToActive') : trans('moveToArchived')}
             onClick={onClick}
         >
             {isArchived ? (

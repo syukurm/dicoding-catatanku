@@ -1,34 +1,44 @@
-import SearchBox from './components/SearchBox';
-import { Link, Route, Routes } from 'react-router-dom';
-import HomePage from './pages/HomePage';
-import Navbar from './components/Navbar';
-import ArchivedPage from './pages/ArchivedPage';
-import NotFoundPage from './pages/NotFoundPage';
-import NotePage from './pages/NotePage';
+import { useContext } from 'react';
+import { Navigate, Route, Routes } from 'react-router-dom';
+
+import { AuthContext } from './contexts/AuthContext';
+import { LocaleContext } from './contexts/LocaleContext';
+import AuthenticatedLayout from './layouts/AuthenticatedLayout';
+import BaseLayout from './layouts/BaseLayout';
+import ErrorPage from './pages/ErrorPage';
+import LoginPage from './pages/LoginPage';
+import LogoutPage from './pages/LogoutPage';
 import NewNotePage from './pages/NewNotePage';
+import NotePage from './pages/NotePage';
+import NotesPage from './pages/NotesPage';
+import SignUpPage from './pages/SignUpPage';
 
 export default function App() {
-    return (
-        <div className="container">
-            <header className="header">
-                <div className="header__inner">
-                    <h1 className="header__title">
-                        <Link to="/" className="header__title-link">
-                            Catatanku
-                        </Link>
-                    </h1>
-                    <SearchBox />
-                </div>
+    const { trans } = useContext(LocaleContext);
+    const { user } = useContext(AuthContext);
 
-                <Navbar />
-            </header>
-            <Routes>
-                <Route path="/" element={<HomePage />} />
-                <Route path="/archived" element={<ArchivedPage />} />
-                <Route path="/notes/new" element={<NewNotePage />} />
-                <Route path="/notes/:id" element={<NotePage />} />
-                <Route path="*" element={<NotFoundPage />} />
-            </Routes>
-        </div>
+    return (
+        <Routes>
+            <Route element={<BaseLayout />}>
+                {user ? (
+                    <Route element={<AuthenticatedLayout />}>
+                        <Route index element={<NotesPage />} />
+                        <Route path="/archived" element={<NotesPage archived />} />
+                        <Route path="/notes/new" element={<NewNotePage />} />
+                        <Route path="/notes/:id" element={<NotePage />} />
+
+                        <Route path="/login" element={<Navigate to="/" replace />} />
+                        <Route path="/register" element={<Navigate to="/" replace />} />
+                        <Route path="/logout" element={<LogoutPage />} />
+                        <Route path="*" element={<ErrorPage code="404" message={trans('pageNotFound')} />} />
+                    </Route>
+                ) : (
+                    <>
+                        <Route path="/register" element={<SignUpPage />} />
+                        <Route path="*" element={<LoginPage />} />
+                    </>
+                )}
+            </Route>
+        </Routes>
     );
 }

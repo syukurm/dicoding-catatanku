@@ -1,0 +1,20 @@
+.nav-menu {
+    &__list {
+        display: flex;
+        margin: 0;
+        list-style-type: none;
+        padding-inline-start: 0;
+    }
+
+    &__item {
+        display: flex;
+
+        &:not(:last-child) {
+            margin-inline-end: 0.5rem;
+        }
+
+        &:first-child {
+            margin-inline-end: 1rem;
+        }
+    }
+}

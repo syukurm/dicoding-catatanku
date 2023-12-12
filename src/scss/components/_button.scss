@@ -1,0 +1,77 @@
+@use "../abstract" as *;
+
+.button {
+    display: inline-flex;
+    align-items: center;
+    color: $color-text;
+    font-weight: 600;
+    background: transparent;
+    border-color: transparent;
+    border-width: 0;
+    border-radius: 0.125rem;
+    padding-inline: 0.85rem;
+    padding-block: 0.35rem;
+
+    &[href] {
+        text-decoration: none;
+    }
+
+    &:is(:hover, :focus) {
+        cursor: pointer;
+    }
+
+    &:focus-visible {
+        outline: 2px solid $color-accent-2;
+        outline-offset: 0.125rem;
+    }
+
+    &--icon {
+        gap: 0.25rem;
+        padding: 0;
+
+        &:hover {
+            color: $color-accent;
+        }
+
+        &:focus {
+            outline: 2px solid $color-accent-2;
+            outline-offset: 0.25rem;
+        }
+    }
+
+    &--primary {
+        color: $color-background;
+        background: $color-accent-2;
+
+        &:hover {
+            opacity: 0.8;
+        }
+
+        &:focus {
+            outline-offset: 0.125rem;
+        }
+    }
+
+    &--secondary {
+        color: $color-accent-2;
+        background-color: $color-background-2;
+
+        &:hover {
+            opacity: 0.8;
+        }
+    }
+
+    &--accent {
+        color: $color-background;
+        background-color: $color-accent;
+
+        &:hover {
+            opacity: 0.8;
+        }
+    }
+
+    &:disabled {
+        cursor: not-allowed;
+        opacity: 0.85;
+    }
+}

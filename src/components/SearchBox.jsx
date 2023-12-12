@@ -22,7 +22,7 @@ export default function SearchBox() {
 
             <input
                 id="search"
-                type="text"
+                type="search"
                 className="search-box__input"
                 value={searchParameters.get('keyword') ?? ''}
                 onChange={(event) => setSearchParameters({ keyword: event.currentTarget.value })}

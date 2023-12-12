@@ -1,19 +1,25 @@
-import { useState } from 'react';
+import { useContext, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+
+import apiClient from '../common/apiClient';
 import Button from '../components/Button';
-import { addNote } from '../utils/localData';
+import { LocaleContext } from '../contexts/LocaleContext';
 
 export default function NewNotePage() {
     const navigate = useNavigate();
     const [title, setTitle] = useState('');
     const [content, setContent] = useState('');
+    const { trans } = useContext(LocaleContext);
 
-    /** @param {import('react').ChangeEvent<HTMLInputElement>} event */
+    /**
+     * @param {React.ChangeEvent<HTMLInputElement>} event
+     */
     function handleSubmit(event) {
         event.preventDefault();
 
-        addNote({ title, body: content });
-        navigate('/');
+        apiClient.addNote({ title, body: content }).then(() => {
+            navigate('/');
+        });
     }
 
     function handleResetButton() {
@@ -22,11 +28,14 @@ export default function NewNotePage() {
     }
 
     return (
-        <main className="add-note">
-            <h2 className="add-note__title">Tambah Catatan</h2>
+        <main className="new-note">
+            <h2 className="new-note__title">
+                <span className="new-note__mark">#</span>
+                {trans('addNote')}
+            </h2>
             <form className="form" onSubmit={handleSubmit}>
                 <label htmlFor="title" className="form__group">
-                    <div className="form__label">Judul</div>
+                    <div className="form__label">{trans('title')}</div>
                     <input
                         name="title"
                         id="title"
@@ -38,7 +47,7 @@ export default function NewNotePage() {
                     />
                 </label>
                 <label htmlFor="content" className="form__group">
-                    <div className="form__label">Isi Catatan</div>
+                    <div className="form__label">{trans('content')}</div>
                     <textarea
                         name="content"
                         id="content"
@@ -51,10 +60,10 @@ export default function NewNotePage() {
                 </label>
                 <div className="form__buttons">
                     <Button type="reset" variant="secondary" onClick={handleResetButton}>
-                        Reset
+                        {trans('reset')}
                     </Button>
                     <Button type="submit" variant="accent">
-                        Buat
+                        {trans('add')}
                     </Button>
                 </div>
             </form>

@@ -1,0 +1,28 @@
+@use "../abstract" as *;
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    color: $color-text;
+    font-size: 0.875rem;
+    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+    line-height: 1.25rem;
+    background-color: $color-background;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+:where(p, h1, h2, h3) {
+    margin: 0;
+    padding: 0;
+}
+
+a {
+    color: $color-text;
+
+    &:where(:hover, :focus) {
+        color: $color-link;
+    }
+}

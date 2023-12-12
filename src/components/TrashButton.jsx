@@ -1,14 +1,18 @@
 import PropTypes from 'prop-types';
+import { useContext } from 'react';
+
+import { LocaleContext } from '../contexts/LocaleContext';
 import Button from './Button';
 
 /**
  * @param {object} props
- * @param {() => void | undefined} props.onClick
+ * @param {(() => void | undefined) | undefined} props.onClick
  */
-
 export default function TrashButton({ onClick }) {
+    const { trans } = useContext(LocaleContext);
+
     return (
-        <Button type="button" variant="icon" ariaLabel="Hapus" title="Hapus" onClick={onClick}>
+        <Button type="button" variant="icon" ariaLabel={trans('delete')} title={trans('delete')} onClick={onClick}>
             <svg
                 xmlns="http://www.w3.org/2000/svg"
                 fill="none"

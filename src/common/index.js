@@ -1,13 +1,18 @@
-const showFormattedDate = (date) => {
-    const options = {
+/**
+ * @param {string | number | Date} date
+ */
+function showFormattedDate(date, locale = 'id-ID') {
+    return new Date(date).toLocaleDateString(locale, {
         weekday: 'long',
         year: 'numeric',
         month: 'long',
         day: 'numeric',
-    };
-    return new Date(date).toLocaleDateString('id-ID', options);
-};
+    });
+}
 
+/**
+ * @param {'primary' | 'secondary' | 'accent' | 'icon'} variant
+ */
 function generateButtonVariantClass(variant) {
     switch (variant) {
         case 'icon': {
@@ -28,4 +33,4 @@ function generateButtonVariantClass(variant) {
     }
 }
 
-export { showFormattedDate, generateButtonVariantClass };
+export { generateButtonVariantClass, showFormattedDate };

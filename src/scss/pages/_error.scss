@@ -1,0 +1,21 @@
+@use "../abstract" as *;
+
+.error {
+    margin-block-start: 2rem;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+
+    &__code {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: $color-accent-2;
+        font-weight: 900;
+        font-size: 4rem;
+        min-block-size: 8rem;
+    }
+}

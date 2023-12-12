@@ -1,11 +1,12 @@
 import PropTypes from 'prop-types';
-import { generateButtonVariantClass } from '../utils';
+
+import { generateButtonVariantClass } from '../common';
 
 /**
  * @param {object} props
  * @param {'primary' | 'secondary' | 'accent' | 'icon'} props.variant
- * @param {import('react').ReactNode} props.children
- * @param {() => void | undefined} props.onClick
+ * @param {React.ReactNode} props.children
+ * @param {(() => void | undefined) | undefined} props.onClick
  * @param {'button' | 'submit' | 'reset'} props.type
  * @param {string | undefined} props.ariaLabel
  * @param {string | undefined} props.title

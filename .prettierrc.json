@@ -4,6 +4,14 @@
     "bracketSpacing": true,
     "endOfLine": "lf",
     "jsxSingleQuote": false,
+    "overrides": [
+        {
+            "files": "*.scss",
+            "options": {
+                "singleQuote": false
+            }
+        }
+    ],
     "printWidth": 120,
     "quoteProps": "as-needed",
     "semi": true,

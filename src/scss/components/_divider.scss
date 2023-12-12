@@ -1,0 +1,5 @@
+@use "../abstract" as *;
+
+.divider {
+    border-inline-start: 2px solid $color-text-muted;
+}

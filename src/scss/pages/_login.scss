@@ -1,0 +1,20 @@
+@use "../abstract" as *;
+
+.login {
+    &__mark {
+        color: $color-accent;
+        margin-inline-end: 0.5rem;
+    }
+
+    &__title {
+        color: $color-accent-2;
+        font-weight: 600;
+        font-size: 1.5rem;
+        line-height: 2rem;
+        padding-block-end: 0.5rem;
+    }
+
+    &__prompt {
+        margin-inline-end: 0.5rem;
+    }
+}

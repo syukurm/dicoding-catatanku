@@ -1,0 +1,25 @@
+.spin {
+    animation: spin 2s linear infinite;
+}
+
+.full-spin {
+    display: flex;
+    min-block-size: 12rem;
+    align-items: center;
+    justify-content: center;
+
+    .icon {
+        inline-size: 3rem;
+        block-size: 3rem;
+    }
+}
+
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}
